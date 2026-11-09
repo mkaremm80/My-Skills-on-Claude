@@ -26,9 +26,9 @@ illustrative examples are clearly labeled, and each output is checked visually b
 Copy the skill folders into your skills directory:
 
 ```bash
-git clone https://github.com/mkaremm80/-my-claude-skills.git
+git clone https://github.com/mkaremm80/My-Skills-on-Claude.git
 mkdir -p ~/.claude/skills
-cp -r -my-claude-skills/skills/* ~/.claude/skills/
+cp -r My-Skills-on-Claude/skills/* ~/.claude/skills/
 ```
 
 ## Requirements
