@@ -1,6 +1,6 @@
 ---
 name: "paper-from-zero-guide"
-description: "Turn any research paper (PDF or LaTeX) into a colorful PDF guide that explains it from zero: background, every equation with labels, full proofs, examples, results, and simulation checks."
+description: "Turn any research paper or technical document (PDF or LaTeX) into a colorful PDF guide that explains it from zero: background, every equation with labels, full proofs, examples, results, and simulation checks. Use when someone wants to understand a hard paper, thesis, report or standard from the ground up."
 ---
 
 # Paper From Zero Guide
@@ -10,6 +10,17 @@ Make one colorful A4 PDF (about 20-30 pages) that lets a reader with ZERO backgr
 Writing style: English, short sentences, simple words (B2 level), professional. Numbers quoted from the paper must match the paper exactly. Numbers from your own worked examples must be labeled "*Example*" with their parameters and seed. Deliver as `<Short_Paper_Name>_Guide_from_Zero_v1.pdf`; number later versions v2, v3, ...
 
 Use a task list: (1) map the paper, (2) compute examples + verify, (3) helper drawings, (4) write + compile, (5) visual check + deliver.
+
+## Bundled files (use them, do not rewrite them)
+- `assets/guide_template.tex` - tested preamble (colors, six box types, header, cover, roadmap) and a skeleton of Parts A-E with one labeled equation. Copy it to your work folder and fill the `<<...>>` placeholders.
+- `scripts/plot_style.py` - `setup()`, `note()`, `save()` for the helper drawings (Step 3 settings, saves PDF + 70-dpi PNG).
+- `scripts/prefix_marks.py guide.tex` - makes annotate-equations mark names unique per `eqbox` (Step 4).
+- `scripts/needspace_pass.py guide.tex` - adds `\Needspace` before every `\section` (Step 5).
+- `scripts/page_montage.py guide.pdf [--dpi 75 --cols 4 --first N --last M]` - page montages for the visual check (Step 6).
+
+Requirements: Python 3 with numpy, scipy, matplotlib, Pillow; pdflatex (TeX Live with `annotate-equations`, `tcolorbox`, `tikz`); poppler-utils (`pdftotext`, `pdftoppm`).
+
+Documents that are not research papers (reports, theses, standards, lecture notes): keep the same five parts; in Part D explain the document's main results, tables or requirements; in Part E check every number that can be recomputed.
 
 ## Step 1 - Read and map the paper
 1. If a zip: unzip into its own folder; read `main.tex`, all `\input` files (tables, TikZ figures), `references.bib`, figure scripts and data files (e.g. `figdata.json`, `plots.py`). If a PDF: extract text and look at each figure page.
@@ -86,4 +97,4 @@ Compile 3 times: `pdflatex -interaction=nonstopmode`. Check the log for `^!` err
 - Render all pages with `pdftoppm -r 45 -png` and make a montage (7 per row); look at page breaks, empty areas, orphan headings.
 - Render the equation pages at 75 dpi (4 pages side by side) and inspect EVERY eqbox: no overlapping labels, no label crossing the frame, no line crossing label text. Fix and recompile until clean. (`pdftoppm` is enough; installing PyMuPDF can be slow.)
 - Confirm all paper numbers match the paper and all example numbers match `numbers.json`.
-- Deliver the PDF with SendUserFile (display: render). In the reply, say in a few short lines what each part contains, what was verified (and how closely our re-simulation matches), and list the notation points/errors found for the authors.
+- Deliver the PDF to the user (send or present the file). In the reply, say in a few short lines what each part contains, what was verified (and how closely our re-simulation matches), and list the notation points/errors found for the authors.

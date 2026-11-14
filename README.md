@@ -49,6 +49,11 @@ skills/
   paper-comic/scripts/comic_engine.py   # same engine as in SKILL.md, ready to import
   lecture-survey-gap-finder/SKILL.md
   paper-from-zero-guide/SKILL.md
+  paper-from-zero-guide/assets/guide_template.tex
+  paper-from-zero-guide/scripts/plot_style.py
+  paper-from-zero-guide/scripts/prefix_marks.py
+  paper-from-zero-guide/scripts/needspace_pass.py
+  paper-from-zero-guide/scripts/page_montage.py
 dist/                                   # zips for the four paper skills, for upload to the Claude app
 ```
 
